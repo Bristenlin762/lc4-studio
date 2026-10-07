@@ -2,7 +2,7 @@
 
 **By Lulin He**
 
-[Live Demo](https://lulin-lc4-studio.lh556.chatgpt.site) · [Source Code](https://github.com/Bristenlin762/lc4-simulator)
+[Live Demo](https://lulin-lc4-studio.lh556.chatgpt.site) · [Source Code](https://github.com/Bristenlin762/lc4-studio)
 
 An interactive, browser-based LC4 debugger powered by a **C CPU core compiled to WebAssembly**. Load PennSim-format LC4 `.obj` files, inspect memory and disassembled instructions, and watch registers and memory change during execution.
 
