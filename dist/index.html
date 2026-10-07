@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LC4 Studio — Lulin He</title><meta name="description" content="Load LC4 object files, inspect assembly and step through a C-powered CPU in your browser."><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b1526'/%3E%3Cpath d='M8 8v16h16v-4H12V8z' fill='%235eead4'/%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div class="brand"><span class="mark">L4</span><div><h1>LC4 Studio — Lulin He</h1><p>Interactive C simulator</p></div></div><div class="header-note">16-bit architecture <span>•</span> 65,536 memory words</div></header>
+<main>
+<section class="toolbar" aria-label="Program controls">
+<div class="load-group"><label class="button primary" for="file">Load .obj<input id="file" type="file" accept=".obj" multiple></label><button id="demo">Load demo</button></div>
+<div class="execution"><button id="step" disabled>Step <kbd>S</kbd></button><button id="run" class="run" disabled>Run</button><button id="pause" disabled>Pause</button><button id="reset" disabled>Reset</button></div>
+<label class="budget">Run limit <input id="limit" type="number" min="1" max="100000" value="1000" aria-label="Maximum instructions per run"></label>
+</section>
+<div id="status" role="status" aria-live="polite">Starting the C execution engine…</div>
+<div class="workspace">
+<section class="panel memory-panel"><div class="panel-heading"><div><h2>Memory & assembly</h2><p id="filename">No program loaded</p></div><span class="chip" id="word-count">0 loaded words</span></div>
+<div class="memory-controls"><label>View <select id="filter"><option value="loaded">Loaded addresses</option><option value="code">Code</option><option value="data">Data</option><option value="all">All memory</option></select></label><form id="jump-form"><label class="sr-only" for="address">Memory address</label><input id="address" placeholder="x2000" maxlength="6"><button>Go</button></form><button id="pc-jump">Go to PC</button><label class="follow"><input type="checkbox" id="follow" checked> Follow PC</label></div>
+<div class="table-wrap"><table><thead><tr><th scope="col">PC</th><th scope="col">Address</th><th scope="col">Word</th><th scope="col">Label</th><th scope="col">Assembly / data</th></tr></thead><tbody id="memory-rows"><tr><td colspan="5" class="empty">Load an LC4 object file or try the summation demo.</td></tr></tbody></table></div>
+<div class="pagination"><button id="prev">Previous</button><span id="page-label">0 addresses</span><button id="next">Next</button></div>
+</section>
+<aside>
+<section class="panel"><div class="panel-heading"><h2>CPU state</h2><span class="chip" id="step-count">0 steps</span></div><div class="cpu-overview"><div><small>Program counter</small><strong id="pc">x0000</strong></div><div><small>Condition code</small><strong id="nzp">Z</strong></div><div><small>Mode</small><strong id="mode">User</strong></div></div><div id="registers" class="registers"></div><form id="entry-form" class="entry-form"><label for="entry">Start address</label><input id="entry" value="x0000" maxlength="6"><button id="entry-button" disabled>Apply & reset</button></form></section>
+<section class="panel"><div class="panel-heading"><h2>Last instruction</h2></div><div id="last" class="detail empty-detail">Step through a program to inspect its effects.</div></section>
+<section class="panel"><div class="panel-heading"><h2>Memory writes</h2><span class="legend">amber = changed</span></div><div id="writes" class="detail empty-detail">STR writes will appear here.</div></section>
+</aside>
+</div>
+<footer><span>C core · WebAssembly · Files stay in this browser tab</span><span>TRAP & OS services excluded. Run stops outside loaded code.</span><a href="demo.obj" download>Download demo .obj</a></footer>
+</main><script type="module" src="app.js"></script></body></html>

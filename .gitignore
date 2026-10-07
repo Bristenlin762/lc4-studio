@@ -1,0 +1,9 @@
+*.o
+*.exe
+*.out
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+__pycache__/
+.sites-runtime/

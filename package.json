@@ -1,0 +1,1 @@
+{"name":"lc4-studio","private":true,"type":"module","scripts":{"test":"node tests/check.mjs"}}
